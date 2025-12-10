@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Schema } from "../amplify/data/resource";
+import type { Schema } from "../../amplify/data/resource";
 import { subscribeToOrgs } from "../api/dashboard";
 
 export default function OrgList() {
