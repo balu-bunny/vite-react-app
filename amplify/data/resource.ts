@@ -7,6 +7,10 @@ The authorization rule below specifies that any user authenticated via an
 API key can "create", "read", "update", and "delete" any `Org` records.
 =========================================================================*/
 const schema = a.schema({
+  Credentials: a.customType({
+    clientId: a.string(),
+    clientSecret: a.string(),
+  }),
   org: a
     .model({
       name: a.string(),
@@ -17,7 +21,7 @@ const schema = a.schema({
       storage: a.string(),
       encryptionKey: a.string(),
       // credentials stored as JSON string: { clientId, clientSecret }
-      credentials: a.json()
+      credentials: a.ref("Credentials")
     })
     .authorization((allow) => [allow.publicApiKey()]),
 });
