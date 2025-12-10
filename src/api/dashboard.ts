@@ -25,15 +25,30 @@ export function subscribeToOrgs(
 }
 
 export async function createOrg(
-  content: string | null,
-  clientId: string | null,
-  clientSecret: string | null
+  name: string,
+  type: string,
+  email: string,
+  icon: string,
+  color: string,
+  storage: string,
+  encryptionKey: string,
+  clientId?: string | null,
+  clientSecret?: string | null
 ) {
-  if (content) {
-    return await client.models.org.create({
-      content,
+  if (name) {
+    const credentials = JSON.stringify({
       clientId: clientId || "",
       clientSecret: clientSecret || "",
+    });
+    return await client.models.org.create({
+      name,
+      type,
+      email,
+      icon,
+      color,
+      storage,
+      encryptionKey,
+      credentials,
     });
   }
 }

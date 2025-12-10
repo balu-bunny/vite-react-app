@@ -6,7 +6,13 @@ import OrgModal from "./components/OrgModal";
 function App() {
   const [orgs, setOrgs] = useState<Array<Schema["org"]["type"]>>([]);
   const [showModal, setShowModal] = useState(false);
-  const [newContent, setNewContent] = useState("");
+  const [name, setName] = useState("");
+  const [type, setType] = useState("");
+  const [email, setEmail] = useState("");
+  const [icon, setIcon] = useState("");
+  const [color, setColor] = useState("");
+  const [storage, setStorage] = useState("");
+  const [encryptionKey, setEncryptionKey] = useState("");
   const [clientId, setClientId] = useState("");
   const [clientSecret, setClientSecret] = useState("");
 
@@ -16,14 +22,30 @@ function App() {
   }, []);
 
   function openCreate() {
-    setNewContent("");
+    setName("");
+    setType("");
+    setEmail("");
+    setIcon("");
+    setColor("");
+    setStorage("");
+    setEncryptionKey("");
     setClientId("");
     setClientSecret("");
     setShowModal(true);
   }
 
   async function handleCreate() {
-    await apiCreateOrg(newContent || null, clientId || null, clientSecret || null);
+    await apiCreateOrg(
+      name,
+      type,
+      email,
+      icon,
+      color,
+      storage,
+      encryptionKey,
+      clientId,
+      clientSecret
+    );
     setShowModal(false);
   }
 
@@ -33,7 +55,7 @@ function App() {
       <button onClick={openCreate}>+ new</button>
       <ul>
         {orgs.map((org) => (
-          <li key={org.id}>{org.content}</li>
+          <li key={org.id}>{org.icon} {org.name}</li>
         ))}
       </ul>
       <div>
@@ -46,8 +68,20 @@ function App() {
 
       <OrgModal
         open={showModal}
-        value={newContent}
-        onChange={setNewContent}
+        name={name}
+        onNameChange={setName}
+        type={type}
+        onTypeChange={setType}
+        email={email}
+        onEmailChange={setEmail}
+        icon={icon}
+        onIconChange={setIcon}
+        color={color}
+        onColorChange={setColor}
+        storage={storage}
+        onStorageChange={setStorage}
+        encryptionKey={encryptionKey}
+        onEncryptionKeyChange={setEncryptionKey}
         clientId={clientId}
         onClientIdChange={setClientId}
         clientSecret={clientSecret}

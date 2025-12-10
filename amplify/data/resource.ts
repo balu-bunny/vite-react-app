@@ -1,17 +1,23 @@
 import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 
 /*== STEP 1 ===============================================================
-The section below creates an `Org` database table with `content`, `clientId`,
-and `clientSecret` fields. The authorization rule below specifies that any
-user authenticated via an API key can "create", "read", "update", and
-"delete" any `Org` records.
+The section below creates an `Org` database table with organization details
+including name, type, email, icon, color, storage, and encryptionKey.
+The authorization rule below specifies that any user authenticated via an
+API key can "create", "read", "update", and "delete" any `Org` records.
 =========================================================================*/
 const schema = a.schema({
   org: a
     .model({
-      content: a.string(),
-      clientId: a.string(),
-      clientSecret: a.string()
+      name: a.string(),
+      type: a.string(),
+      email: a.string(),
+      icon: a.string(),
+      color: a.string(),
+      storage: a.string(),
+      encryptionKey: a.string(),
+      // credentials stored as JSON string: { clientId, clientSecret }
+      credentials: a.string(),
     })
     .authorization((allow) => [allow.publicApiKey()]),
 });

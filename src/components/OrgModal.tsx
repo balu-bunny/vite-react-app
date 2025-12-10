@@ -2,8 +2,20 @@ import React from "react";
 
 export default function OrgModal({
   open,
-  value,
-  onChange,
+  name,
+  onNameChange,
+  type,
+  onTypeChange,
+  email,
+  onEmailChange,
+  icon,
+  onIconChange,
+  color,
+  onColorChange,
+  storage,
+  onStorageChange,
+  encryptionKey,
+  onEncryptionKeyChange,
   clientId,
   onClientIdChange,
   clientSecret,
@@ -12,8 +24,20 @@ export default function OrgModal({
   onCreate,
 }: {
   open: boolean;
-  value: string;
-  onChange: (v: string) => void;
+  name: string;
+  onNameChange: (v: string) => void;
+  type: string;
+  onTypeChange: (v: string) => void;
+  email: string;
+  onEmailChange: (v: string) => void;
+  icon: string;
+  onIconChange: (v: string) => void;
+  color: string;
+  onColorChange: (v: string) => void;
+  storage: string;
+  onStorageChange: (v: string) => void;
+  encryptionKey: string;
+  onEncryptionKeyChange: (v: string) => void;
   clientId: string;
   onClientIdChange: (v: string) => void;
   clientSecret: string;
@@ -46,9 +70,46 @@ export default function OrgModal({
       <div style={modalStyle}>
         <h3>Create Org</h3>
         <input
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder="Org content"
+          value={name}
+          onChange={(e) => onNameChange(e.target.value)}
+          placeholder="Organization Name"
+          style={{ width: "100%", padding: "8px", marginBottom: "8px" }}
+        />
+        <input
+          value={type}
+          onChange={(e) => onTypeChange(e.target.value)}
+          placeholder="Organization Type"
+          style={{ width: "100%", padding: "8px", marginBottom: "8px" }}
+        />
+        <input
+          value={email}
+          onChange={(e) => onEmailChange(e.target.value)}
+          placeholder="Email"
+          type="email"
+          style={{ width: "100%", padding: "8px", marginBottom: "8px" }}
+        />
+        <input
+          value={icon}
+          onChange={(e) => onIconChange(e.target.value)}
+          placeholder="Icon (emoji)"
+          style={{ width: "100%", padding: "8px", marginBottom: "8px" }}
+        />
+        <input
+          value={color}
+          onChange={(e) => onColorChange(e.target.value)}
+          placeholder="Color (CSS classes)"
+          style={{ width: "100%", padding: "8px", marginBottom: "8px" }}
+        />
+        <input
+          value={storage}
+          onChange={(e) => onStorageChange(e.target.value)}
+          placeholder="Storage Type"
+          style={{ width: "100%", padding: "8px", marginBottom: "8px" }}
+        />
+        <input
+          value={encryptionKey}
+          onChange={(e) => onEncryptionKeyChange(e.target.value)}
+          placeholder="Encryption Key"
           style={{ width: "100%", padding: "8px", marginBottom: "8px" }}
         />
         <input
