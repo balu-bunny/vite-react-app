@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Schema } from "../../amplify/data/resource";
-import { subscribeToOrgs } from "../api/dashboard";
+import { subscribeToOrgs } from "../api/organizations";
 
 export default function OrgList() {
   const [orgs, setOrgs] = useState<Array<Schema["org"]["type"]>>([]);

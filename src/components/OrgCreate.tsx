@@ -1,6 +1,6 @@
 import { useState } from "react";
 import OrgModal from "./OrgModal";
-import { createOrg as apiCreateOrg } from "../api/dashboard";
+import { createOrg as apiCreateOrg } from "../api/organizations";
 
 export default function OrgCreate() {
   const [showModal, setShowModal] = useState(false);
