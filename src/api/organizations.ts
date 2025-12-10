@@ -23,9 +23,15 @@ export async function createOrg(
   icon: string,
   color: string,
   storage: string,
-  encryptionKey: string
+  encryptionKey: string,
+  clientId?: string | null,
+  clientSecret?: string | null
 ) {
   if (name) {
+    const credentials = ({
+      clientId: clientId || "",
+      clientSecret: clientSecret || "",
+    });
     return await client.models.org.create({
       name,
       type,
@@ -34,6 +40,7 @@ export async function createOrg(
       color,
       storage,
       encryptionKey,
+      credentials,
     });
   }
 }
@@ -75,7 +82,7 @@ export async function updateOrg(
     updates.clientId !== undefined ||
     updates.clientSecret !== undefined
   ) {
-    payload.credentials = JSON.stringify({
+    payload.credentials = ({
       clientId: updates.clientId || "",
       clientSecret: updates.clientSecret || "",
     });

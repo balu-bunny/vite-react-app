@@ -17,7 +17,7 @@ const schema = a.schema({
       storage: a.string(),
       encryptionKey: a.string(),
       // credentials stored as JSON string: { clientId, clientSecret }
-      credentials: a.string(),
+      credentials: a.json()
     })
     .authorization((allow) => [allow.publicApiKey()]),
 });

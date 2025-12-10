@@ -36,7 +36,7 @@ export async function createOrg(
   clientSecret?: string | null
 ) {
   if (name) {
-    const credentials = JSON.stringify({
+    const credentials = ({
       clientId: clientId || "",
       clientSecret: clientSecret || "",
     });
