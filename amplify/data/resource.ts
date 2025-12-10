@@ -11,7 +11,7 @@ const schema = a.schema({
     .model({
       content: a.string(),
       clientId: a.string(),
-      clientSecret: a.string(),
+      clientSecret: a.string()
     })
     .authorization((allow) => [allow.publicApiKey()]),
 });
