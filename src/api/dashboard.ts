@@ -4,13 +4,14 @@ import type { Schema } from "../../amplify/data/resource";
 const client = generateClient<Schema>();
 
 export async function getDashboardData() {
-  return await client.queries.getDashboard({});
+  return await client.models.org.list();
 }
 
 export async function getStats() {
-  return await client.queries.getStats({});
+  const orgs = await client.models.org.list();
+  return { count: orgs.data?.length || 0 };
 }
 
 export async function refreshDashboard() {
-  return await client.mutations.refreshDashboard({});
+  return await client.models.org.list();
 }
