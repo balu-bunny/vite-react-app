@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { subscribeToOrgs } from "../api/dashboard";
 
