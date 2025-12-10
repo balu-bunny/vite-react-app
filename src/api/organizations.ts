@@ -28,10 +28,10 @@ export async function createOrg(
   clientSecret?: string | null
 ) {
   if (name) {
-    const credentials = ({
+    const credentials = {
       clientId: clientId || "",
       clientSecret: clientSecret || "",
-    });
+    };
     return await client.models.org.create({
       name,
       type,
