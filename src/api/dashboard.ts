@@ -24,8 +24,16 @@ export function subscribeToOrgs(
   });
 }
 
-export async function createOrg(content: string | null) {
+export async function createOrg(
+  content: string | null,
+  clientId: string | null,
+  clientSecret: string | null
+) {
   if (content) {
-    return await client.models.org.create({ content });
+    return await client.models.org.create({
+      content,
+      clientId: clientId || "",
+      clientSecret: clientSecret || "",
+    });
   }
 }

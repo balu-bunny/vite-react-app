@@ -23,7 +23,7 @@ function App() {
   }
 
   async function handleCreate() {
-    await apiCreateOrg(newContent || null);
+    await apiCreateOrg(newContent || null, clientId || null, clientSecret || null);
     setShowModal(false);
   }
 
