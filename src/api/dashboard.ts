@@ -15,3 +15,17 @@ export async function getStats() {
 export async function refreshDashboard() {
   return await client.models.org.list();
 }
+
+export function subscribeToOrgs(
+  callback: (orgs: Array<Schema["org"]["type"]>) => void
+) {
+  return client.models.org.observeQuery().subscribe({
+    next: (data: any) => callback([...data.items]),
+  });
+}
+
+export async function createOrg(content: string | null) {
+  if (content) {
+    return await client.models.org.create({ content });
+  }
+}

@@ -1,20 +1,16 @@
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
-import { generateClient } from "aws-amplify/data";
-
-const client = generateClient<Schema>();
+import { subscribeToOrgs, createOrg as apiCreateOrg } from "./api/dashboard";
 
 function App() {
   const [orgs, setOrgs] = useState<Array<Schema["org"]["type"]>>([]);
 
   useEffect(() => {
-    client.models.org.observeQuery().subscribe({
-      next: (data) => setOrgs([...data.items]),
-    });
+    subscribeToOrgs(setOrgs);
   }, []);
 
   function createOrg() {
-    client.models.org.create({ content: window.prompt("Org content") });
+    apiCreateOrg(window.prompt("Org content"));
   }
 
   return (
